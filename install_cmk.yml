@@ -4,7 +4,7 @@
 #  become: yes
 
   vars:
-    rpm_package_local_path: "/root/check-mk-agent-2.2.0p12-bfa944d3b37e4b92.noarch.rpm" # Replace with your local RPM package path
+    rpm_package_local_path: "check-mk-agent-2.2.0p12-bfa944d3b37e4b92.noarch.rpm" # Replace with your local RPM package path
     rpm_package_remote_path: "/root/check-mk-agent-2.2.0p12-bfa944d3b37e4b92.noarch.rpm" # Temporary path on remote server
 
   tasks:
