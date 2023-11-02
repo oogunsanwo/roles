@@ -1,6 +1,6 @@
 ---
 - name: Configure MOTD on RHEL Servers
-  hosts: rhel_servers
+  hosts: all
   become: yes
   vars:
     motd_message: |
