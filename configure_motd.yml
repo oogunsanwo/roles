@@ -1,0 +1,16 @@
+---
+- name: Configure MOTD on RHEL Servers
+  hosts: rhel_servers
+  become: yes
+  vars:
+    motd_message: |
+      Welcome to the RHEL server!
+      Managed by Ansible Tower.
+
+  tasks:
+    - name: Set MOTD on RHEL Servers
+      copy:
+        dest: /etc/motd
+        content: "{{ motd_message }}"
+        mode: '0644'
+      when: ansible_os_family == "RedHat"
