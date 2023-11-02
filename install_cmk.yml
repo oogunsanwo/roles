@@ -10,7 +10,7 @@
   tasks:
     - name: Copy RPM package to remote server
       ansible.builtin.copy:
-        src: "{{ rpm_package_local_path }}"
+        remote_src: "{{ rpm_package_local_path }}"
         dest: "{{ rpm_package_remote_path }}"
 
     - name: Install RPM package
