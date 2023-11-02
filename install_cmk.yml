@@ -12,7 +12,7 @@
       ansible.builtin.copy:
         src: "{{ rpm_package_local_path }}"
         dest: "{{ rpm_package_remote_path }}"
-        remote_src: false
+        remote_src: true
         
     - name: Install RPM package
       ansible.builtin.yum:
