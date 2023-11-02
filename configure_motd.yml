@@ -1,7 +1,7 @@
 ---
 - name: Configure MOTD on RHEL Servers
   hosts: all
-  become: yes
+ # become: yes
   vars:
     motd_message: |
       Welcome to the RHEL server!
