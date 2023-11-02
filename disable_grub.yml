@@ -1,7 +1,7 @@
 ---
 - name: Disable GRUB password on Red Hat servers
   hosts: mail
-  become: yes
+ # become: yes
   vars:
     grub_cfg: /etc/grub.d/10_linux
     backup_ext: ".backup"
