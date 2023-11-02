@@ -1,0 +1,23 @@
+---
+- name: Patch RHEL Servers
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Update package cache
+      yum:
+        name: '*'
+        state: latest
+      register: result
+
+    - name: Reboot a slow machine that might have lots of updates to apply
+      reboot:
+       reboot_timeout: 3600
+
+    - name: Wait for servers to come back online
+      wait_for:
+        host: "{{ inventory_hostname }}"
+        port: 22
+        delay: 30
+        timeout: 300
+        state: started
