@@ -1,6 +1,6 @@
 ---
 - name: Set GRUB password for RHEL 7 servers
-  hosts: rhel7servers
+  hosts: mail
   become: yes
   tasks:
     - name: Check if GRUB password is set
