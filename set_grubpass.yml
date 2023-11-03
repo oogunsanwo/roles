@@ -1,0 +1,35 @@
+---
+- name: Set GRUB password for RHEL 7 servers
+  hosts: rhel7servers
+  become: yes
+  tasks:
+    - name: Check if GRUB password is set
+      command: grep -q '^GRUB2_PASSWORD=' /etc/grub.d/01_users
+      register: grub_password_check
+      failed_when: grub_password_check.rc > 1
+      changed_when: false
+      check_mode: no
+
+    - name: Set GRUB password
+      block:
+        - name: Backup the 01_users file
+          copy:
+            src: /etc/grub.d/01_users
+            dest: /etc/grub.d/01_users.backup
+            remote_src: yes
+
+        - name: Set the GRUB2 password
+          lineinfile:
+            path: /etc/grub.d/01_users
+            create: yes
+            line: "GRUB2_PASSWORD=grub.pbkdf2.hash"
+            regexp: '^GRUB2_PASSWORD='
+          notify:
+            - Update GRUB configuration
+
+      when: grub_password_check.stdout == ""
+
+  handlers:
+    - name: Update GRUB configuration
+      command: grub2-mkconfig -o /boot/grub2/grub.cfg
+      listen: "Update GRUB configuration"
