@@ -22,7 +22,7 @@
           lineinfile:
             path: /etc/grub.d/01_users
             create: yes
-            line: "GRUB2_PASSWORD=grub.pbkdf2.hash"
+            line: "GRUB2_PASSWORD=$1$P9fHssNu$I2rJGwBmmO8AgJ9LHnH710"
             regexp: '^GRUB2_PASSWORD='
           notify:
             - Update GRUB configuration
