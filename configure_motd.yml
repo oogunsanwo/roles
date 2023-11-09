@@ -8,9 +8,6 @@
       Welcome to SBSynergy LLC
       This server is being monitored
       Please respect the privacy of others.
-  
-  debug: 
-    msg: "\n"
 
   tasks:
     - name: Set MOTD on RHEL Servers
