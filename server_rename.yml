@@ -12,4 +12,5 @@
         user: root
         state: present
         key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+      delegate_to: kubemaster  
   
