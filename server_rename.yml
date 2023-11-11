@@ -1,6 +1,6 @@
 ---
 - name: Update hostname and set up SSH keys
-  hosts: sambacifs
+  hosts: sambaserver
   become: yes
   tasks:
     - name: Set new hostname
@@ -12,5 +12,5 @@
         user: root
         state: present
         key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
-      delegate_to: kubemaster  
+      delegate_to:   
   
