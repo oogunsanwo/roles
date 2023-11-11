@@ -1,15 +1,22 @@
 ---
-- name: Update hostname and set up SSH keys
-  hosts: sambaserver
-  become: yes
+- name: Update Hostname and Transfer SSH Key
+  hosts: sambacifs
+  #become: yes
+
   tasks:
     - name: Set new hostname
       hostname:
-        name: "sambaserver"
+        name: 'sambacifs'
 
-    - name: Set up SSH keys for passwordless login
+   # - name: Install sshpass (if not already installed)
+    #  yum:
+     #   name: sshpass
+      #  state: present
+
+    - name: Transfer root's SSH key to remote host
       authorized_key:
         user: root
         state: present
         key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+
   
