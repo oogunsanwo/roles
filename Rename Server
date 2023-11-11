@@ -1,0 +1,16 @@
+---
+- name: Update hostname and set up SSH keys
+  hosts: sambacifs
+  become: yes
+  tasks:
+    - name: Set new hostname
+      hostname:
+        name: "sambaserver"
+
+    - name: Set up SSH keys for passwordless login
+      authorized_key:
+        user: root
+        state: present
+        key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
+    - name: Reboot the server
+        reboot:
