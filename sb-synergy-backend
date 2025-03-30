@@ -1,4 +1,3 @@
-
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
@@ -28,9 +27,8 @@ class Registration(db.Model):
             'phone': self.phone
         }
 
-# Initialize the database
-@app.before_first_request
-def create_tables():
+# Initialize the database (create tables if they don't exist)
+with app.app_context():
     db.create_all()
 
 # Route to register users
